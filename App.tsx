@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { WebView } from 'react-native-webview';
-import { Alert, NativeModules, Platform, Text } from 'react-native';
-import ReactNativeIdfaAaid, { AdvertisingInfoResponse } from '@sparkfabrik/react-native-idfa-aaid';
+import { Text } from 'react-native';
+import ReactNativeIdfaAaid from '@sparkfabrik/react-native-idfa-aaid';
 
 import messaging from '@react-native-firebase/messaging';
 
@@ -36,11 +36,10 @@ const MyWebView = () => {
     loadData();
   }, []);
 
-  //Надо было на gaid && token поменять, но я уже скомпилировал и было лень(
   return (
     <>
-      {token && <Text>{getFullUrl()}</Text>}
-      {token && <WebView source={{ uri: getFullUrl() }} style={{ flex: 1 }} />} 
+      {gaid && token && <Text>{getFullUrl()}</Text>}
+      {gaid && token && <WebView source={{ uri: getFullUrl() }} style={{ flex: 1 }} />} 
     </>
   );
   
