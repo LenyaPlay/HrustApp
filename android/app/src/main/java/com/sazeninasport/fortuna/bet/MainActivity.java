@@ -1,4 +1,4 @@
-package com.hrustapp;
+package com.sazeninasport.fortuna.bet;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

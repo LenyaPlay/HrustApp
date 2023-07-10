@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.hrustapp"
+    namespace "com.sazeninasport.fortuna.bet"
     defaultConfig {
-        applicationId "com.hrustapp"
+        applicationId "com.sazeninasport.fortuna.bet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
