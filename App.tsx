@@ -1,48 +1,24 @@
 import React, { useState } from 'react';
-import { WebView } from 'react-native-webview';
-import { Text } from 'react-native';
-import ReactNativeIdfaAaid from '@sparkfabrik/react-native-idfa-aaid';
 
-import messaging from '@react-native-firebase/messaging';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeScreen from './HomeScreen';
+import WebViewComponent from './WebViewComponent';
 
+const Stack = createNativeStackNavigator();
 
-
-const MyWebView = () => {
-  const url = "https://pagbeting.space/QN9Kbb";
-  const url2 = "https://decodeit.ru/qr";
-
-  const [gaid, setGaid] = useState<string | null>();
-  const [token, setToken] = useState<string>();
-  const name = "Danil_Khaertdinov";
-  const [loaded, setLoaded] = useState<Boolean>(false);
-
-  const loadData = async () => {
-    try{
-      let res = await ReactNativeIdfaAaid.getAdvertisingInfo();
-      setGaid(res.id);
-      let token =  await messaging().getToken();
-      setToken(token);
-  
-      console.log(`${res.id} \n ${token}`);
-    }
-    catch(e){
-      console.log(e);
-    }
-  }
-
-  const getFullUrl = () => `${url}?gaid=${gaid}&token=${token}&name=${name}`;
-
-  React.useEffect(() => {
-    loadData();
-  }, []);
-
-  return (
-    <>
-      {gaid && token && <Text>{getFullUrl()}</Text>}
-      {gaid && token && <WebView source={{ uri: getFullUrl() }} style={{ flex: 1 }} />} 
-    </>
+const App = () => {
+    return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+        />
+        <Stack.Screen name="WebView" component={WebViewComponent} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-  
 };
 
-export default MyWebView;
+export default App;
